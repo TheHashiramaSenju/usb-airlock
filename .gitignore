@@ -1,1 +1,10 @@
 venv/
+.venv/
+__pycache__/
+*.py[cod]
+.env
+vm/assets/*
+!vm/assets/.gitkeep
+vm/kernel/*
+!vm/kernel/.gitkeep
+EOF

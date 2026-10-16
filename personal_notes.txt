@@ -1,0 +1,16 @@
+the rules are and will be under --> /etc/udev/rules.d
+
+They participate in a pipeline that starts when hardware appears and ends with userspace programs responding to that hardware.
+
+We are not going to redirect the physical USB device somewhere else. We are going to observe the kernel's device events, apply host-side policy, and eventually hand the storage device to an isolated scanner.
+
+udev can be loaded from multiple / several locations
+
+some of those different locaion, serves a different purpose for the entire system 
+
+Location	Purpose
+/usr/lib/udev/rules.d/	--- Vendor and distribution-provided rules installed by packages
+/etc/udev/rules.d/	--- Administrator-managed rules, where we should put our project-specific rule
+/run/udev/rules.d/	--- Runtime rules, which may be generated or supplied during the current boot
+
+We will not redirect the kernel event itself into Firecracker. Instead, we will build a controlled pipeline that uses the event to identify a device and then passes a carefully selected block device to a virtual machine.
