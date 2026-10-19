@@ -1,0 +1,11 @@
+# USB Airlock — candidate host access-control rule
+# NOT ACTIVE until explicitly installed.
+#
+# Hide USB storage from UDisks and restrict device-node permissions.
+# This is not protection against privileged host processes or root.
+
+SUBSYSTEM=="block", ENV{ID_BUS}=="usb", ENV{DEVTYPE}=="disk", \
+    ENV{UDISKS_IGNORE}="1", OWNER="root", GROUP="root", MODE="000"
+
+SUBSYSTEM=="block", ENV{ID_BUS}=="usb", ENV{DEVTYPE}=="partition", \
+    ENV{UDISKS_IGNORE}="1", OWNER="root", GROUP="root", MODE="000"
